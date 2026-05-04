@@ -61,8 +61,28 @@ swap          2 GB           swap         Minimikrav
 
 
 # Del 3 — Linux-serverinstallation -
+Del 3.2
 Jag har installerat srv-linux01. Jag var tvungen att lägga till en /boot/efi på 600 mib för att det skulle fungera. Innan dess fick jag problem med min installation, det ståd att den inte kunde kontrollera utrymme, jag testade det mesta innan jag lyckades ta reda på vad felet var.
-Jag har gjort screenshot-01 och screenshot-02 och lagt i screenshot mappen.
+Jag har gjort screenshots och lagt i screenshot mappen.
+![Screenshot 02](Screenshot-01.png)
+![Screenshot 02](Screenshot-02.png)
+
+Del 3.3
+"lsblk" visar min virtuella hårddisk och alla partitioner samt hur de hänger ihop.
+
+"df -h" visar att mina filsystem är korrekt monterade och hur mycket diskutrymme som används och är ledigt på mina partitioner.
+
+![screenshot 03](Screenshot-03.png)
+
+"ip addr show" visar nätverkskonfiguration, exempelvis IP address och nätverkskort.
+
+"hostnamectl" visar vad datorn heter, information om operativsystem och allmän information om datorn som inte riktigt syns så bra för mig då det är en VM och inte en riktig fysisk dator.
+
+![scrrenshot 04](Screenshot-04.png)
+
+Del 3.4
+
+
 
 # Del 4 — Windows Server och Active Directory -
 # Del 5 — Kontohantering med script -
