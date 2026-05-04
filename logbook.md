@@ -6,7 +6,7 @@
 --- 
 ## Arbetslogg
 
-### ÅÅÅÅ-MM-DD 
+### 2026-05-04 
 **Arbetat med:** 
 **Vad jag gjorde:** 
 **Problem och lösningar:** 
