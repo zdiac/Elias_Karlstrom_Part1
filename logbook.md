@@ -82,7 +82,23 @@ Del 3.3
 
 Del 3.4
 
+![screenshot 05](Screenshot-05.png)
 
+![screenshot 06](Screenshot-06.png)
+
+Tre tjänster och varför de behövs:
+"sshd.service" gör att man kan fjärransluta till en server.
+
+"NetworkManager.service" hanterar nätverksanslutningar, utan den fungerar inte internet eller lan.
+
+"firewalld.service" hanterar brandväggen och öppnar och stänger portar för inkommande ut och utgående trafik.
+
+Vilken port lyssnar SSH på och vad används den till?
+- Port 22 och används till att fjärransluta.
+
+Om man stänger av en kritiskt tjänst så kan systemet bli ostabilt eller osäkert, beroende på vilken tjänst man stänger av.
+
+Man kan ta reda på om en tjänst är systemkritisk genom att skriva systemctl status <tjänst>
 
 # Del 4 — Windows Server och Active Directory -
 # Del 5 — Kontohantering med script -
