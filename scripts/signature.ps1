@@ -1,0 +1,7 @@
+Write-Host "==============================================="
+Write-Host "Name:        Elias Karlström"
+Write-Host "Email:       elikar940726@student.jenseneducation.se"
+Write-Host "Timestamp:   $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+Write-Host "Hostname:    $env:COMPUTERNAME"
+Write-Host "IP:          $(ipconfig | Select-String 'IPv4' | Select-Object -First 1)"
+Write-Host "==============================================="
