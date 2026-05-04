@@ -39,9 +39,26 @@ ext4 är äldre, stabilt och enklare men har lägre maxgränser för filstorlek 
 
 RHEL IdM är Red Hats system för central hantering av Linux‑användare, autentisering, grupper, SSH‑nycklar och policies. Det bygger på FreeIPA. (Så deras version av Active Directory)
 
-Något jag inte förstod? - Jag tycker att allt det här är ganska jobbigt och att det är väldigt mycket att göra själv.
+Något jag inte förstod? - Jag tycker att allt det känns som att det är väldigt mycket information och lite otydligt.
 
-https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/
+
+Källa: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/
+
+srv-linux01 - Partitionsplan
+Mount point   Minimum size   Filesystem   Motivering
+/boot         1 GB           xfs          Standard, minsta rekommenderade storlek
+/             25 GB          xfs          Räcker för system, loggar och installerade paket
+/home         10 GB          xfs          Minimikrav, lagrar användarfiler
+swap          2 GB           swap         Minimikrav
+
+
+srv-idm01 - Partitionsplan
+Mount point   Minumum size   Filesystem   Motivering
+/boot         1 GB           xfs          Standard
+/             30 GB          xfs          IdM installerar fler tjänster och databaser
+/home         20 GB          xfs          Mer utrymme för användardata och certifikat
+swap          2 GB           swap         Minimikrav
+
 
 # Del 3 — Linux-serverinstallation -
 # Del 4 — Windows Server och Active Directory -
