@@ -6,7 +6,7 @@
 --- 
 ## Arbetslogg
 
-### 2026-05-04 
+### ÅÅ-MM-DD 
 **Arbetat med:** 
 **Vad jag gjorde:** 
 **Problem och lösningar:** 
@@ -15,6 +15,20 @@
 ---
 
 # Del 1 — Förberedelse och sätta upp repo -
+
+Jag har skapat ett red hat developer konto och laddat ned senaste ISOn
+
+Git är installerat och konfigurerat
+- Namn: Elias Karlström
+- Mail: elikar940726@student.jenseneducation.se
+
+Repo initierat och mappstruktur skapad så som instruktionerna.
+
+Skapat .sh och .ps1 signatur.
+
+Skapat några commits enligt instruktionerna.
+
+
 # Del 2 — Planering -
 # Del 3 — Linux-serverinstallation -
 # Del 4 — Windows Server och Active Directory -
