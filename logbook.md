@@ -30,6 +30,19 @@ Skapat några commits enligt instruktionerna.
 
 
 # Del 2 — Planering -
+
+Redhat säger att /boot ska ligga på en egen partition som har minst 1 GB utrymme.
+
+XFS är RHEL:s standardfilsystem, optimerat för stora filsystem och hög prestanda.
+
+ext4 är äldre, stabilt och enklare men har lägre maxgränser för filstorlek och volym.
+
+RHEL IdM är Red Hats system för central hantering av Linux‑användare, autentisering, grupper, SSH‑nycklar och policies. Det bygger på FreeIPA. (Så deras version av Active Directory)
+
+Något jag inte förstod? - Jag tycker att allt det här är ganska jobbigt och att det är väldigt mycket att göra själv.
+
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/
+
 # Del 3 — Linux-serverinstallation -
 # Del 4 — Windows Server och Active Directory -
 # Del 5 — Kontohantering med script -
