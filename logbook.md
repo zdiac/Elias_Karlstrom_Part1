@@ -47,7 +47,7 @@ Källa: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/
 srv-linux01 - Partitionsplan
 Mount point   Minimum size   Filesystem   Motivering
 /boot         1 GB           xfs          Standard, minsta rekommenderade storlek
-/             25 GB          xfs          Räcker för system, loggar och installerade paket
+/             20 GB          xfs          Räcker för system, loggar och installerade paket
 /home         10 GB          xfs          Minimikrav, lagrar användarfiler
 swap          2 GB           swap         Minimikrav
 
@@ -61,6 +61,9 @@ swap          2 GB           swap         Minimikrav
 
 
 # Del 3 — Linux-serverinstallation -
+Jag har installerat srv-linux01. Jag var tvungen att lägga till en /boot/efi på 600 mib för att det skulle fungera. Innan dess fick jag problem med min installation, det ståd att den inte kunde kontrollera utrymme, jag testade det mesta innan jag lyckades ta reda på vad felet var.
+Jag har gjort screenshot-01 och screenshot-02 och lagt i screenshot mappen.
+
 # Del 4 — Windows Server och Active Directory -
 # Del 5 — Kontohantering med script -
 # Del 6 — Delade mappar och rättigheter -
