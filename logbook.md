@@ -127,12 +127,20 @@ Hade nätverksadressen varit annorlunda hade den varit på fel nätverk.
 Min ip adress var från början fel och då ändrade jag den med "sudo nano /etc/NetworkManager/system-connections/ens160.nmconnection
 sudo systemctl restart NetworkManager"
 
-Del 3.6.3.
+Del 3.6.4
 ![screenshot 11](Screenshot-11.png)
 
 Alla partitioner som jag skapade själv matchar min plan och är på rätt plats med rätt storlek.
 Om exempelvis /home had saknats eller om en storlek inte var det jag satte den till, så hade det varit fel.
 Man kan korrigera detta här /etc/fstab och sedan ladda om konfigurationen med sudo mount -a
+
+del 3.6.5
+![screenshot 12](Screenshot-12.png)
+Eftersom jag inte har installerat idm01 och dc01 så kommer ping inte att fungera, vilket framgår i min screenshot. Jag kan dock pinga min värddator.
+
+Nätverksanslutningen hade varit bruten mm ping visar “Destination Host Unreachable”, 100% packet loss även om ip-adresserna är  i samma nät.
+
+Jag hade kontrollerat brandväggar, att alla ip adresser är korrekta och att alla servrar är igång.
 
 
 # Del 4 — Windows Server och Active Directory -
