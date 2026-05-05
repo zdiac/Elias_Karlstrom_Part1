@@ -61,6 +61,7 @@ swap          2 GB           swap         Minimikrav
 
 
 # Del 3 — Linux-serverinstallation -
+
 Del 3.2
 Jag har installerat srv-linux01. Jag var tvungen att lägga till en /boot/efi på 600 mib för att det skulle fungera. Innan dess fick jag problem med min installation, det ståd att den inte kunde kontrollera utrymme, jag testade det mesta innan jag lyckades ta reda på vad felet var.
 Jag har gjort screenshots och lagt i screenshot mappen.
@@ -86,6 +87,7 @@ Del 3.4
 
 ![screenshot 06](Screenshot-06.png)
 
+Del 3.4.3.
 Tre tjänster och varför de behövs:
 "sshd.service" gör att man kan fjärransluta till en server.
 
@@ -99,6 +101,39 @@ Vilken port lyssnar SSH på och vad används den till?
 Om man stänger av en kritiskt tjänst så kan systemet bli ostabilt eller osäkert, beroende på vilken tjänst man stänger av.
 
 Man kan ta reda på om en tjänst är systemkritisk genom att skriva systemctl status <tjänst>
+
+Del 3.5.1
+
+![screenshot 07](Screenshot-07.png)
+ 
+ # Felsökning
+ del 3.6.1
+![screenshot 08](Screenshot-08.png)
+Min output visar att SSH är active (running) och enabled
+hade den inte vart igång hade stått stått active (dead) eller inactive (stopped)
+För att starta igen hade jag skrivit sudo systemctl start sshd
+
+del 3.6.2
+![screenshot 09](Screenshot-09.png)
+min output visar att mitt datornamn är satt korrekt, detta är vad servern identifierar sig som i nätverket.
+Om det skulle stå ett annat namn än vad jag satt så hade det varit fel.
+För att byta hostname skriver man sudo hostnamectl set-hostname srv-linux01.bjorklunda.local
+
+Del 3.6.3
+![screenshot 10](Screenshot-10.png)
+Detta visar att min statiska IP adress som jag har satt på mitt primära nätverkskort är rätt och att den är på samma nätverk som min värddator, då min värddator har samma nätverksadress (det står inte där men jag vet det då jag har kollat det i terminalen med ipconfig)
+Hade nätverksadressen varit annorlunda hade den varit på fel nätverk.
+
+Min ip adress var från början fel och då ändrade jag den med "sudo nano /etc/NetworkManager/system-connections/ens160.nmconnection
+sudo systemctl restart NetworkManager"
+
+Del 3.6.3.
+![screenshot 11](Screenshot-11.png)
+
+Alla partitioner som jag skapade själv matchar min plan och är på rätt plats med rätt storlek.
+Om exempelvis /home had saknats eller om en storlek inte var det jag satte den till, så hade det varit fel.
+Man kan korrigera detta här /etc/fstab och sedan ladda om konfigurationen med sudo mount -a
+
 
 # Del 4 — Windows Server och Active Directory -
 # Del 5 — Kontohantering med script -
