@@ -144,6 +144,36 @@ Jag hade kontrollerat brandväggar, att alla ip adresser är korrekta och att al
 
 
 # Del 4 — Windows Server och Active Directory -
+
+Del 4.1.1.
+![screenshot 13](Screenshot-13.png)
+(jag har lyckats pinga till dc01 som har ip 192.168.0.70)
+
+Del 4.1.2
+![screenshot 14](Screenshot-14.png)
+Lyckad ping från DC01 till serv-linux01
+
+Del 4.2
+![screenshot 15](Screenshot-15.png)
+Signatur
+
+Del 4.3.1
+![screenshot 16](Screenshot-16.png)
+AD DC aktivt
+
+Del 4.3.2 frågor
+Vad är en skog(forest) i AD?
+En forest är den översta nivån i active directory där alla domäner ingår.
+
+Vad är skillnaden mellan en domän och en OU?
+En domän är hela "byggnaden" där alla användare, datorer och regler finns.
+OU är där en mapp inne i domänen där man sorterar exempelvis användare och datorer
+
+Vad används DSRM lösenordet till?
+Det används när man startar en domänkontrollant i reparationsläge. Det är enda sättet att komma åt AD om databasen går sönder.
+
+
+
 # Del 5 — Kontohantering med script -
 # Del 6 — Delade mappar och rättigheter -
 # Del 7 — Utskriftssystem -
