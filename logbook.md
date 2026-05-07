@@ -187,6 +187,40 @@ del 4.7.1
 Jag var tvungen att ta bort min VM för att serverdelarna fungerade inte med rhel 10.1
 Laddade ner rhel 9.7
 
+Del 4.7.2
+1. Vad är RHEL IdM och vad används det till?
+RHEL IdM är Red Hats system för central hantering av Linux‑användare, grupper och autentisering. Liknande Active Directory på Windows
+
+2. Skillnaden mellan RHEL IdM och Active Directory i din miljö
+IdM hanterar Linux‑konton.
+AD hanterar Windows‑konton.
+
+3. Vilka tjänster startar IdM automatiskt och vad gör de?
+LDAP – lagrar användare och grupper
+Kerberos – sköter inloggning/SSO
+Dogtag CA – hanterar certifikat
+DNS – domänens DNS
+HTTPD – webgränssnittet för IdM
+
+Del 4.8.1
+![screenshot 21](Screenshot-21.png)
+
+Del 4.8.2
+![screenshot 22](Screenshot-22.png)
+
+Del 4.9.1
+![screenshot 23](Screenshot-23.png)
+
+Del 4.9.2 – Svar på frågor
+1. Vad innebär det att srv-linux01 är ansluten till IdM?  
+Linux01 använder nu centrala IdM‑konton för autentisering istället för lokala konton. På samma sätt som Active Directory fungerar i Windows miljö.
+
+2. Vad är skillnaden mellan att logga in med ett lokalt konto och ett IdM‑konto?  
+Lokala konton finns bara loktalt på ens fysiska dator, medan IdM‑konton lagras centralt och fungerar på alla anslutna Linux‑servrar.
+
+3. Vad händer om srv-idm01 slutar fungera?  
+Användare som loggat in tidigare kan fortfarande logga in tack vare cache, men nya inloggningar fungerar inte.
+
 # Del 5 — Kontohantering med script -
 # Del 6 — Delade mappar och rättigheter -
 # Del 7 — Utskriftssystem -
