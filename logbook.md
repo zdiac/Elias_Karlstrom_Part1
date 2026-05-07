@@ -182,6 +182,10 @@ Jag har även skapat grupper direkt under mina tre OU, exempelvis IT-Technicians
 Del 4.6.1
 ![screenshot 19](Screenshot-19.png)
 
+del 4.7.1
+![screenshot 20](Screenshot-20.png)
+Jag var tvungen att ta bort min VM för att serverdelarna fungerade inte med rhel 10.1
+Laddade ner rhel 9.7
 
 # Del 5 — Kontohantering med script -
 # Del 6 — Delade mappar och rättigheter -
