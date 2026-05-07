@@ -172,6 +172,15 @@ OU är där en mapp inne i domänen där man sorterar exempelvis användare och 
 Vad används DSRM lösenordet till?
 Det används när man startar en domänkontrollant i reparationsläge. Det är enda sättet att komma åt AD om databasen går sönder.
 
+Del 4.4.1
+![screenshot 17](Screenshot-17.png)
+
+Del 4.5
+![screenshot 18](Screenshot-18.png)
+Jag har även skapat grupper direkt under mina tre OU, exempelvis IT-Technicians
+
+Del 4.6.1
+![screenshot 19](Screenshot-19.png)
 
 
 # Del 5 — Kontohantering med script -
