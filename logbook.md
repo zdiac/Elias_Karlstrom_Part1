@@ -222,6 +222,54 @@ Lokala konton finns bara loktalt på ens fysiska dator, medan IdM‑konton lagra
 Användare som loggat in tidigare kan fortfarande logga in tack vare cache, men nya inloggningar fungerar inte.
 
 # Del 5 — Kontohantering med script -
+Del 5.2.1
+
+- Laddar in AD modulen så att powershell kan köra active directory kommandon.
+Import-Module ActiveDirectory
+
+- Den här raden laddar in alla användare från CSV‑filen så att scriptet kan jobba med dem en i taget.
+$users = Import-Csv -Path "C:\lab\data\users.csv" -Encoding UTF8
+
+foreach ($user in $users) {
+
+- Om en användare redan finns med samma namn så skapar den inte en dublett, skriver istället ut att användaren redan finns.
+    if (Get-ADUser -Filter "SamAccountName -eq '$($user.Username)'" -ErrorAction SilentlyContinue) {
+        Write-Host "SKIPPED: $($user.Username) already exists" -ForegroundColor Yellow
+        continue
+    }
+
+- Placerar varje användare i rätt OU baserat på deras avdelning.
+    $ouPath = "OU=$($user.Department),OU=IT-Department,DC=bjorklunda,DC=local"
+
+- Skapar ett nytt AD‑konto med rätt namn, användarnamn, lösenord och placering i OU‑strukturen, baserat på informationen i CSV‑filen.
+    New-ADUser `
+        -Name "$($user.FirstName) $($user.LastName)" `
+        -GivenName $user.FirstName `
+        -Surname $user.LastName `
+        -SamAccountName $user.Username `
+        -UserPrincipalName "$($user.Username)@bjorklunda.local" `
+        -Path $ouPath `
+        -Enabled $true `
+        -AccountPassword (ConvertTo-SecureString "Welcome2024!" -AsPlainText -Force)
+
+- Lägger till användaren i rätt säkerhetsgrupp
+    Add-ADGroupMember -Identity $user.ADGroup -Members $user.Username
+
+- Skriver ut att användaren har skapats
+    Write-Host "CREATED: $($user.Username)" -ForegroundColor Green
+}
+
+Del 5.2.2
+![screenshot 24](Screenshot-24.png)
+För att det här skulle fungera så var jag tvungen att ändra till rätt gruppnamn i users.csv
+Vi ombads tidigare att döpa grupperna till samma namn som deras OU, men i users.csv så står det GRP_(gruppnamn), detta gör att scriptet försöker lägga till användarna i grupper som inte finns.
+
+Del 5.2.3
+![Screenshot 25](Screenshot-25.png)
+Användarna hamnar i rätt plats i OU strukturen.
+
+
+
 # Del 6 — Delade mappar och rättigheter -
 # Del 7 — Utskriftssystem -
 # Del 8 — Virtualisering -

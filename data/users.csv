@@ -1,0 +1,11 @@
+FirstName,LastName,Username,Department,ADGroup,IdMGroup
+Alexander,Isak,aisak,Technicians,GRP_FullControl,full-access
+Dejan,Kulusevski,dkulusevski,Support,GRP_ReadOnly,readonly-access
+Viktor,Gyokeres,vgyokeres,Management,GRP_FullControl,full-access
+Emil,Forsberg,eforsberg,Technicians,GRP_FullControl,full-access
+Mattias,Svanberg,msvanberg,Support,GRP_ReadOnly,readonly-access
+Albin,Ekdal,aekdal,Management,GRP_FullControl,full-access
+Victor,Lindelof,vlindelof,Technicians,GRP_FullControl,full-access
+Ludwig,Augustinsson,laugustinsson,Support,GRP_ReadOnly,readonly-access
+Robin,Olsson,rolsson,Management,GRP_FullControl,full-access
+Jesper,Karlsson,jkarlsson,Technicians,GRP_FullControl,full-access
