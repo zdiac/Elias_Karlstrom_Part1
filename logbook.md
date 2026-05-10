@@ -6,10 +6,62 @@
 --- 
 ## Arbetslogg
 
+### 2026-05-04 
+**Arbetat med: Del 1 Signaturskript och satt upp mitt repo** 
+
+**Vad jag gjorde: Jag skapade mitt repo lokalt på min dator och gjorde signaturskript i vsc** 
+
+**Problem och lösningar: Jag hade ingra problem under den sektionen** 
+
+**Beslut jag fattade: Jag comittar mitt repo i vsc istället för terminalen.** 
+
+**Källor jag använde:** 
+
+## Arbetslogg
+
+### 2026-05-04 
+**Arbetat med: Del 2: Planering** 
+
+**Vad jag gjorde: Planerat partitionsstorlekarna för mina olika Linux servrar** 
+
+**Problem och lösningar: Inga problem här eftersom jag endast planerat, visade sig dock vara problem i nästa del** 
+
+**Beslut jag fattade: Storlek på mina servrar, storlek på VM maskiner. Resurser som servrarna ska ha.** 
+
+**Källor jag använde: AI har använt redhads rekommendationer för minumum storlek utav de olika partitionerna** 
+
+## Arbetslogg
+
+### 2026-05-05 
+**Arbetat med:Del 3: Planering** 
+
+**Vad jag gjorde: Installerade min srv-linux01 och satte statisk ip adress och hostname** 
+
+**Problem och lösningar: RHEL vägrade installera för att den kunde inte räkna ut utrymmet på min hårddisk, efter många om och men så visade det sig att jag behövde en partition som heter /boot/efi på 600 mib**
+
+**Beslut jag fattade: La till en ny partition /boot/efi** 
+
+**Källor jag använde:** 
+
+## Arbetslogg
+
+### 2026-05-07 
+**Arbetat med: Del 4: Windows Server och Active Directory** 
+
+**Vad jag gjorde: Installerade DC01 med Active Directory, installerade idm01, instellare IdM på bägge linux datorer** 
+
+**Problem och lösningar: DC01 gjorde en VMWare easy installation och tillät mig inte att göra några val under installationen. Jag var tvungen att göra en manuell installation via VMware. Jag kunde inte installera IdM på min idm01. Det stod att det var ett error med GPG key. Jag var tvungen att ta bort min 10.1 RHEL server och installera RHEL 9.7. Samma problem uppstod ävden på linux01. Där var jag också tvungen att ta bort servern och installera den igen.** 
+
+**Beslut jag fattade: Installerade om mina linux servrar med RHEL 9.7, ändrade i users.csv** 
+
+**Källor jag använde: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/considerations_in_adopting_rhel_10/identity-management** 
+
+## Arbetslogg
+
 ### ÅÅ-MM-DD 
 **Arbetat med:** 
 **Vad jag gjorde:** 
-**Problem och lösningar:** 
+**Problem och lösningar: Fick problem när jag skulle köra mina script på dc01 (där man skapar användarna och lägger dom i rätt OU), det fungerade inte för att skriptet i instruktionerna var skrivna med andra gruppnamn än dom som det stod att vi skulle skapa enligt instruktioerna.** 
 **Beslut jag fattade:** 
 **Källor jag använde:** 
 ---
@@ -268,9 +320,61 @@ Del 5.2.3
 ![Screenshot 25](Screenshot-25.png)
 Användarna hamnar i rätt plats i OU strukturen.
 
+Del 5.3.1
+
+# Pekar på vart user.csv ligger
+CSV_FILE="$HOME/users.csv"
+
+# Kollar att filen finns där den ska finnas, annars skriver den ut att den inte hittar
+if [ ! -f "$CSV_FILE" ]; then
+    echo "ERROR: CSV file not found at $CSV_FILE"
+    exit 1
+fi
+
+# Hoppar över rubrikraden i CSV‑filen och läser varje rad en i taget.
+tail -n +2 "$CSV_FILE" | while IFS=',' read -r \
+    first last username dept adgroup idmgroup; do
+
+# Kontrollerar om användaren redan finns i IdM, och om kontot finns så hoppar scriptet över användaren och fortsätter till nästa rad.
+    if ipa user-find --login="$username" &>/dev/null; then
+        echo "SKIPPED: $username already exists"
+        continue
+    fi
+
+# Skapar ett nytt IdM‑konto med användarnamn, förnamn, efternamn och ett standardlösenord
+    ipa user-add "$username" \
+        --first="$first" \
+        --last="$last" \
+        --password <<< "Password123"
+
+# Lägger till användaren i rätt idm grupp enligt users.csv
+    ipa group-add-member "$idmgroup" --users="$username"
+
+# Skriver ut en text att användaren är skapad och tillagd i sin grupp
+    echo "CREATED: $username added to group $idmgroup"
+
+Del 5.3.2
+![screenshot 26](Screenshot-26-1.png)
+Jag skrev mitt signaturescript efter användarna var skapade, så det syns på nästa skärmbild
+
+Del 5.3.3
+![screenshot 27](Screenshot-27.png)
+Mina 10 användare är skapade
+
+Del 5.3.4
+
+Varför skapar vi konton i både AD och IdM istället för bara ett system? 
+- För att Windows‑miljön använder Active Directory för autentisering, medan Linux‑servrar använder IdM. Båda systemen behövs för att användare ska kunna logga in och få rätt behörigheter i både Windows och Linux.
+
+Vad är fördelen med att läsa användare från en CSV-fil istället för att skapa dem manuellt? 
+- Att använda csv filen gör att man kan skapa många användare snabbt på en gång.
+
+Vad händer om scriptet körs två gånger och varför är det viktigt att hantera det? 
+- Då försöker den skapa samma användare två gånger och lägga till dom i samma grupp två gånger. Därför är det viktigt att lägga till i scriptet att kontrollera ifall användaren redan finns.
 
 
 # Del 6 — Delade mappar och rättigheter -
+
 # Del 7 — Utskriftssystem -
 # Del 8 — Virtualisering -
 # Del 9 — Lagar och säkerhet -
