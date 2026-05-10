@@ -17,8 +17,6 @@
 
 **Källor jag använde:** 
 
-## Arbetslogg
-
 ### 2026-05-04 
 **Arbetat med: Del 2: Planering** 
 
@@ -30,7 +28,6 @@
 
 **Källor jag använde: AI har använt redhads rekommendationer för minumum storlek utav de olika partitionerna** 
 
-## Arbetslogg
 
 ### 2026-05-05 
 **Arbetat med:Del 3: Planering** 
@@ -43,7 +40,6 @@
 
 **Källor jag använde:** 
 
-## Arbetslogg
 
 ### 2026-05-07 
 **Arbetat med: Del 4: Windows Server och Active Directory** 
@@ -56,14 +52,71 @@
 
 **Källor jag använde: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/considerations_in_adopting_rhel_10/identity-management** 
 
-## Arbetslogg
+### 2026-05-10 
+**Arbetat med: Del 5: Kontohantering med script** 
 
-### ÅÅ-MM-DD 
-**Arbetat med:** 
-**Vad jag gjorde:** 
+**Vad jag gjorde: Skapade konton i Active Directory och IDM med script** 
+
 **Problem och lösningar: Fick problem när jag skulle köra mina script på dc01 (där man skapar användarna och lägger dom i rätt OU), det fungerade inte för att skriptet i instruktionerna var skrivna med andra gruppnamn än dom som det stod att vi skulle skapa enligt instruktioerna.** 
-**Beslut jag fattade:** 
+
+**Beslut jag fattade: Ändrade namn på grupperna i users.csv så att de matchade mina redan skapade grupper i AD** 
 **Källor jag använde:** 
+
+### 0000-00-00 
+**Arbetat med:** 
+
+**Vad jag gjorde:** 
+
+**Problem och lösningar:** 
+
+**Beslut jag fattade:** 
+
+**Källor jag använde:** 
+
+### 0000-00-00 
+**Arbetat med:** 
+
+**Vad jag gjorde:** 
+
+**Problem och lösningar:** 
+
+**Beslut jag fattade:** 
+
+**Källor jag använde:**
+
+### 0000-00-00 
+**Arbetat med:** 
+
+**Vad jag gjorde:** 
+
+**Problem och lösningar:** 
+
+**Beslut jag fattade:** 
+
+**Källor jag använde:**
+
+### 0000-00-00 
+**Arbetat med:** 
+
+**Vad jag gjorde:** 
+
+**Problem och lösningar:** 
+
+**Beslut jag fattade:** 
+
+**Källor jag använde:**
+
+### 0000-00-00 
+**Arbetat med:** 
+
+**Vad jag gjorde:** 
+
+**Problem och lösningar:** 
+
+**Beslut jag fattade:** 
+
+**Källor jag använde:**
+
 ---
 
 # Del 1 — Förberedelse och sätta upp repo -
@@ -374,6 +427,26 @@ Vad händer om scriptet körs två gånger och varför är det viktigt att hante
 
 
 # Del 6 — Delade mappar och rättigheter -
+
+Del 6.1.1
+![screenshot 28](Screenshot-28.png)
+Mapparna är skapade med rätt rättigheter. Fungerade inte först för att min srv-idm01 inte var igång.
+
+Del 6.1.2
+Första siffran av CHMOD kommandot är ägarens rättigheter, andra siffran är gruppens rättigheter, sista siffran är alla andras rättigheter.
+
+750 = Ägaren har läs skriv och kör, gruppen har läs och kör, alla andra har ingen åtkomst
+770 = Ägaren och gruppen har läs skriv och kör, alla andra har ingen åtkomst.
+
+Del 6.2.1
+Jag tog bort:
+Users
+Authenticated Users
+Domain Users
+Everyone
+CREATOR OWNER
+Administrators
+Jag tog bort dessa eftersom uppgiften kräver att endast grupperna ReadOnly och FullControl ska ha åtkomst till mapparna, annars skulle annars fler användare åtkomst än vad som är tillåtet.
 
 # Del 7 — Utskriftssystem -
 # Del 8 — Virtualisering -
