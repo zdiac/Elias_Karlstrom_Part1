@@ -62,14 +62,14 @@
 **Beslut jag fattade: Ändrade namn på grupperna i users.csv så att de matchade mina redan skapade grupper i AD** 
 **Källor jag använde:** 
 
-### 0000-00-00 
-**Arbetat med:** 
+### 2026-05-10 
+**Arbetat med: Del 6: Delade mappar och rättigheter** 
 
-**Vad jag gjorde:** 
+**Vad jag gjorde: Skapade mappar på linux01 och DC01 som jag gav  rätt rättigheter på** 
 
-**Problem och lösningar:** 
+**Problem och lösningar: Jag kunde inte logga in med något av de konton jag skapat på dc01. Jag var tvungen att lägga till att mina användare i fullcontrol och readonly kunde logga in lokalt.** 
 
-**Beslut jag fattade:** 
+**Beslut jag fattade: Vilka rättigheter som jag skulle ta bort och hur jag skulle göra så att mina användare kunde logga in lokalt så jag kunde testa åtkomst till mapparna. Jag var tvungen att lägga in åtkomst för administratör på mapparna igen för att kunna dela ut dom** 
 
 **Källor jag använde:** 
 
@@ -447,6 +447,32 @@ Everyone
 CREATOR OWNER
 Administrators
 Jag tog bort dessa eftersom uppgiften kräver att endast grupperna ReadOnly och FullControl ska ha åtkomst till mapparna, annars skulle annars fler användare åtkomst än vad som är tillåtet.
+
+Del 6.2.2
+![screenshot 29](Screenshot-29.png)
+
+Del 6.2.3
+![screenshot 30](Screenshot-30.png)
+
+Del 6.4.1
+![screenshot 31](Screenshot-31.png)
+Tillåten åtkomst från användare med readonly
+
+Del 6.4.2
+![sceenshot 32](Screenshot-32.png)
+Nekad åtkomst från användare med readonly
+
+Del 6.4.3
+Vad är skillnaden mellan NTFS-rättigheter och delningsrättigheter (share permissions)? 
+- NTFS styr vad du får göra med själva filerna, oavsett hur du är ansluten.
+- Delningsrättigheter styr vad du får göra om du är ansluten via nätverket.
+
+Vilka rättigheter gäller när en användare ansluter till en delad mapp via nätverket? 
+- Den mest begränsande rättigheten mellan delnings och NTFS gäller.
+
+Vad är skillnaden mellan hur Linux och Windows hanterar gruppbaserade rättigheter?
+- Linux använder ett enkelt system med ägare, grupp, andra och rättigheterna r/w/x.
+- Windows använder ACL‑listor där många grupper och användare kan ha olika detaljerade rättigheter på samma objekt.
 
 # Del 7 — Utskriftssystem -
 # Del 8 — Virtualisering -
