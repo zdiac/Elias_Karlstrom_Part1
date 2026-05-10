@@ -73,15 +73,20 @@
 
 **Källor jag använde:** 
 
-### 0000-00-00 
-**Arbetat med:** 
+### 2026-05-10 
+**Arbetat med: Del 7.3: Lägg till en virtuell skrivare** 
 
-**Vad jag gjorde:** 
+**Vad jag gjorde: Installerade CUPS och en virtuell skrivare** 
 
-**Problem och lösningar:** 
+**Problem och lösningar: Kunde inte installera skrivaren korrekt. fick felmeddelande File device URIs have been disabled. To enable, see the FileDevice directive in "/etc/cups/cups-files.conf".
+Ändrade i konfigurationsfilen från #FileDevice No till FileDevice Yes
+Ändrade även länken i installationen från:
+drv:--/sample.drv/generic.ppd 
+till 
+drv:///sample.drv/generic.ppd** 
 
 **Beslut jag fattade:** 
-
+Se ovan
 **Källor jag använde:**
 
 ### 0000-00-00 
@@ -475,6 +480,41 @@ Vad är skillnaden mellan hur Linux och Windows hanterar gruppbaserade rättighe
 - Windows använder ACL‑listor där många grupper och användare kan ha olika detaljerade rättigheter på samma objekt.
 
 # Del 7 — Utskriftssystem -
+
+Del 7.1.1
+![screenshot 33](Screenshot-33-1.png)
+CUPS installerat
+
+Del 7.2.1
+![screenshot 34](Screenshot-34-1.png)
+"ss -tlnp | grep cups" ger inget utslag, men "ss -tlnp | grep 631" visar att cups lyssnar på port 631
+"sudo lsof -i :631" visar att det är cups som äger porten
+
+Del 7.3.1
+![Screenshot 35](Screenshot-35.png)
+Skrivaren är skapad och är just nu IDLE (används inte)
+var tvungen att ändra 
+drv:--/sample.drv/generic.ppd 
+till 
+drv:///sample.drv/generic.ppd
+
+Del 7.4.1
+![Screenshot 36](Screenshot-36.png)
+Det står file (0) för att det inte är en fil utan bara text
+Det är ingenting i kön vilket visar att det skrevs ut korrekt.
+
+Del 7.4.2: Svara på frågorna 
+ 
+Vad är CUPS och varför används det i Linux-miljöer? 
+- Cups är ett Linux system för att installera skrivare, hantera utskrifstjobb och ta hand om ustrifsköer.
+
+Vad är skillnaden mellan en lokal skrivare och en nätverksskrivare i CUPS? 
+- En lokal skrivare är direkt ansluten till datorn, till exempel via USB.
+- En nätverksskrivare nås via nätverket med en IP‑adress
+
+Hur skulle du styra vem som får skriva ut med hjälp av IdM-grupper i en produktionsmiljö? 
+- Man kan skapa IDM grupper med utskrifsbehörigheter och sedan konfigurera cups så att bara användare som är med i dessa grupper får skriva ut
+
 # Del 8 — Virtualisering -
 # Del 9 — Lagar och säkerhet -
 # Del 10 — Råd och stöd -
