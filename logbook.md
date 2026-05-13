@@ -7,78 +7,81 @@
 ## Arbetslogg
 
 ### 2026-05-04 
-**Arbetat med: Del 1 Signaturskript och satt upp mitt repo** 
+**Arbetat med:** Del 1 Signaturskript och satt upp mitt repo** 
 
-**Vad jag gjorde: Jag skapade mitt repo lokalt på min dator och gjorde signaturskript i vsc** 
+**Vad jag gjorde:** Jag skapade mitt repo lokalt på min dator och gjorde signaturskript i vsc
 
-**Problem och lösningar: Jag hade ingra problem under den sektionen** 
+**Problem och lösningar:** Jag hade ingra problem under den sektionen
 
-**Beslut jag fattade: Jag comittar mitt repo i vsc istället för terminalen.** 
+**Beslut jag fattade:** Jag comittar mitt repo i vsc istället för terminalen.
 
 **Källor jag använde:** 
 
 ### 2026-05-04 
-**Arbetat med: Del 2: Planering** 
+**Arbetat med:** Del 2: Planering 
 
-**Vad jag gjorde: Planerat partitionsstorlekarna för mina olika Linux servrar** 
+**Vad jag gjorde:** Planerat partitionsstorlekarna för mina olika Linux servrar 
 
-**Problem och lösningar: Inga problem här eftersom jag endast planerat, visade sig dock vara problem i nästa del** 
+**Problem och lösningar:** Inga problem här eftersom jag endast planerat, visade sig dock vara problem i nästa del
 
-**Beslut jag fattade: Storlek på mina servrar, storlek på VM maskiner. Resurser som servrarna ska ha.** 
+**Beslut jag fattade:** Storlek på mina servrar, storlek på VM maskiner. Resurser som servrarna ska ha.
 
-**Källor jag använde: AI har använt redhads rekommendationer för minumum storlek utav de olika partitionerna** 
-
+**Källor jag använde:** https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/automatically_installing_rhel/system-requirements-and-supported-architectures_rhel-installer
 
 ### 2026-05-05 
 **Arbetat med:Del 3: Planering** 
 
 **Vad jag gjorde: Installerade min srv-linux01 och satte statisk ip adress och hostname** 
 
-**Problem och lösningar: RHEL vägrade installera för att den kunde inte räkna ut utrymmet på min hårddisk, efter många om och men så visade det sig att jag behövde en partition som heter /boot/efi på 600 mib**
+**Problem och lösningar:** RHEL vägrade installera för att den kunde inte räkna ut utrymmet på min hårddisk, efter många om och men så visade det sig att jag behövde en partition som heter /boot/efi på 600 mib**
 
-**Beslut jag fattade: La till en ny partition /boot/efi** 
+**Beslut jag fattade:** La till en ny partition /boot/efi
 
-**Källor jag använde:** 
+**Källor jag använde:** https://access.redhat.com/solutions/2022923 
 
 
 ### 2026-05-07 
-**Arbetat med: Del 4: Windows Server och Active Directory** 
+**Arbetat med:** Del 4: Windows Server och Active Directory
 
-**Vad jag gjorde: Installerade DC01 med Active Directory, installerade idm01, instellare IdM på bägge linux datorer** 
+**Vad jag gjorde:** Installerade DC01 med Active Directory, installerade idm01, instellare IdM på bägge linux datorer
 
-**Problem och lösningar: DC01 gjorde en VMWare easy installation och tillät mig inte att göra några val under installationen. Jag var tvungen att göra en manuell installation via VMware. Jag kunde inte installera IdM på min idm01. Det stod att det var ett error med GPG key. Jag var tvungen att ta bort min 10.1 RHEL server och installera RHEL 9.7. Samma problem uppstod ävden på linux01. Där var jag också tvungen att ta bort servern och installera den igen.** 
+**Problem och lösningar:** DC01 gjorde en VMWare easy installation och tillät mig inte att göra några val under installationen. Jag var tvungen att göra en manuell installation via VMware. Jag kunde inte installera IdM på min idm01. Det stod att det var ett error med GPG key. Jag var tvungen att ta bort min 10.1 RHEL server och installera RHEL 9.7. Samma problem uppstod ävden på linux01. Där var jag också tvungen att ta bort servern och installera den igen.
 
-**Beslut jag fattade: Installerade om mina linux servrar med RHEL 9.7, ändrade i users.csv** 
+**Beslut jag fattade:** Installerade om mina linux servrar med RHEL 9.7, ändrade i users.csv 
 
 **Källor jag använde: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/considerations_in_adopting_rhel_10/identity-management** 
 
 ### 2026-05-10 
-**Arbetat med: Del 5: Kontohantering med script** 
+**Arbetat med:** Del 5: Kontohantering med script
 
-**Vad jag gjorde: Skapade konton i Active Directory och IDM med script** 
+**Vad jag gjorde:** Skapade konton i Active Directory och IDM med script
 
-**Problem och lösningar: Fick problem när jag skulle köra mina script på dc01 (där man skapar användarna och lägger dom i rätt OU), det fungerade inte för att skriptet i instruktionerna var skrivna med andra gruppnamn än dom som det stod att vi skulle skapa enligt instruktioerna.** 
+**Problem och lösningar:** Fick problem när jag skulle köra mina script på dc01 (där man skapar användarna och lägger dom i rätt OU), det fungerade inte för att skriptet i instruktionerna var skrivna med andra gruppnamn än dom som det stod att vi skulle skapa enligt instruktioerna.
 
-**Beslut jag fattade: Ändrade namn på grupperna i users.csv så att de matchade mina redan skapade grupper i AD** 
+**Beslut jag fattade:** Ändrade namn på grupperna i users.csv så att de matchade mina redan skapade grupper i AD
+
+**Källor jag använde:**
+
+### 2026-05-10 
+**Arbetat med:** Del 6: Delade mappar och rättigheter
+
+**Vad jag gjorde:** Skapade mappar på linux01 och DC01 som jag gav rätt rättigheter på
+
+**Problem och lösningar:** Jag kunde inte logga in med något av de konton jag skapat på dc01. Jag var tvungen att lägga till att mina användare i fullcontrol och readonly kunde logga in lokalt. 
+
+**Beslut jag fattade:** Vilka rättigheter som jag skulle ta bort och hur jag skulle göra så att mina användare kunde logga in lokalt så jag kunde testa åtkomst till mapparna. Jag var tvungen att lägga in åtkomst för administratör på mapparna igen för att kunna dela ut dom 
+
 **Källor jag använde:** 
 
 ### 2026-05-10 
-**Arbetat med: Del 6: Delade mappar och rättigheter** 
-
-**Vad jag gjorde: Skapade mappar på linux01 och DC01 som jag gav  rätt rättigheter på** 
-
-**Problem och lösningar: Jag kunde inte logga in med något av de konton jag skapat på dc01. Jag var tvungen att lägga till att mina användare i fullcontrol och readonly kunde logga in lokalt.** 
-
-**Beslut jag fattade: Vilka rättigheter som jag skulle ta bort och hur jag skulle göra så att mina användare kunde logga in lokalt så jag kunde testa åtkomst till mapparna. Jag var tvungen att lägga in åtkomst för administratör på mapparna igen för att kunna dela ut dom** 
-
-**Källor jag använde:** 
-
-### 2026-05-10 
-**Arbetat med: Del 7.3: Lägg till en virtuell skrivare** 
+**Arbetat med:** Del 7.3: Lägg till en virtuell skrivare 
 
 **Vad jag gjorde: Installerade CUPS och en virtuell skrivare** 
 
-**Problem och lösningar: Kunde inte installera skrivaren korrekt. fick felmeddelande File device URIs have been disabled. To enable, see the FileDevice directive in "/etc/cups/cups-files.conf".
+**Problem och lösningar**: 
+
+Kunde inte installera skrivaren korrekt. fick felmeddelande "File device URIs have been disabled. To enable, see the FileDevice directive in "/etc/cups/cups-files.conf"."
+
 Ändrade i konfigurationsfilen från #FileDevice No till FileDevice Yes
 Ändrade även länken i installationen från:
 drv:--/sample.drv/generic.ppd 
@@ -87,18 +90,22 @@ drv:///sample.drv/generic.ppd**
 
 **Beslut jag fattade:** 
 Se ovan
+
 **Källor jag använde:**
+https://www.cups.org/doc/cupsd.conf.html
 
 ### 2026-05-13 
-**Arbetat med: Del 8.2: Nätverkslägen i virtualisering** 
+**Arbetat med:** Del 8.2: Nätverkslägen i virtualisering och Del 9: Lagar och säkerhet
 
-**Vad jag gjorde: Snapshots av alla VMs, återställde en snapshot, svarade på frågor.** 
+**Vad jag gjorde:** Snapshots av alla VMs, återställde en snapshot, svarade på frågor. 
 
-**Problem och lösningar: Inga problem** 
+**Problem och lösningar:** Inga problem*
 
-**Beslut jag fattade: Vad för fil jag skulle skapa och hur jag skulle visa att snapshot fungerade.** 
+**Beslut jag fattade:** Vad för fil jag skulle skapa och hur jag skulle visa att snapshot fungerade. 
 
-**Källor jag använde:**
+**Källor jag använde:
+https://www.redhat.com/en/about/eulas
+https://linuxbash.sh/post/open-source-vs-proprietary-software**
 
 ### 0000-00-00 
 **Arbetat med:** 
