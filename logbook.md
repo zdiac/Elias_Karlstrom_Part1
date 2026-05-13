@@ -613,5 +613,100 @@ Snapshots är ett bra verktyg om man vill testa nya konfigurationer och sedan vi
 Det är inte ett bra verktyg för långsiktig backup eftersom de försvinner om man skulle behöva ta bort sin VM (som jag gjorde då jag behövde installera RHEL 9.7 istället för 10.1, data bör man backa upp någon annanstans och helst inte lokalt.)
 
 # Del 9 — Lagar och säkerhet -
+
+Del 9.1.1.
+
+Vilken typ av personuppgifter hanteras i din miljö? 
+- Anställdas för och efternamn, deras konton i IDM samt deras lösenord.
+
+Var lagras de och vem har åtkomst till dem? 
+- De lagras på IDM och AD servern.
+
+Vad händer om en obehörig person får åtkomst till din AD-katalog eller IdM? Vilka 
+personuppgifter exponeras?
+- Då skulle de få tillgång till vilka som är anställda på mitt företag och deras konton. Jag har dock inga super känsliga uppgifter i min miljö som det ser ut just nu, exempelvis inga bankuppgifter eller personnummer.
+
+Del 9.2.1
+
+Under vilka villkor får du använda ditt Red Hat Developer-konto? Läs licensvillkoren på 
+developers.redhat.com och svara med källhänvisning. 
+- https://developers.redhat.com/terms-and-conditions?utm_source=copilot.com
+- Jag får använda Red Hat Developer‑kontot för personlig utveckling, testning, prototyper,demonstrationer och för begränsad personlig produktion. Så länge jag använder det som privatperson.
+
+Vad är skillnaden mellan en öppen källkodslicens och en proprietär licens? 
+- Med öppen källkod kan man läsa all kod i programmet. Man får även ändra och dela det enligt licensen.
+- Proprietär licens så är källkoden stängd och ägs av ett företag, man får inte ändra eller dela programmet utöver vad som anges av ägaren.
+
+Vilka av de program du installerat är licensierade under öppen källkod och vilka är 
+proprietära? 
+- RHEL bygger på öppen källkod.
+- SSH är öppen källkod.
+- Linux verktyg som bash är öppen källkod.
+- IDM är öppen källkod.
+- Cups är öppen källkod
+- Active directory är proprietär källkod från Microsoft
+- Windows Server är proprietär källkod från Microsoft
+- Vmware är proprietär källkod från Wmware inc.
+
+Del 9.3.1
+
+Vad innebär det för informationshanteringen att Björklunda kommun är en offentlig 
+verksamhet? 
+- Att Björklunda kommun omfattas av offentlighetsprincipen och offentligheten kan begära ut information som inte är känslig. Det gäller därför att strukturera information så att man lätt kan skilja på känslig och icke känslig information.
+
+Vilken typ av information bör inte lagras i it-common och varför? 
+- Personuppgifter
+- Ekonomiska uppgifter
+- Socialtjänstinformation
+- Lösenord
+- Interna känsliga dokument
+
+Hur påverkar OSL hur du sätter upp behörigheter i din miljö? 
+- Användare ska bara ha tillgång till det som de verkligen behöver
+- Grupper i Active Directory och IDM ska tilldelas utefter användarnas roller.
+- Delade mappar ska separeras efter användarnas säkerhetsnivåer.
+
+Del 9.4.1: Svara på frågorna 
+
+För varje risk som du identifierar skriver du i logbook.md: 
+Vad är risken? 
+
+1. Alla nya användare har samma lösenord och behövde inte ändra lösenord vid inloggning
+
+2. Alla datorer ligger på samma subnät.
+
+3. Jag har en IDM server och en AD server, men normalt sätt så har man minst två av varje som är synkade ifall den andra går ner.
+
+Vad kan konsekvensen bli om den utnyttjas?
+
+1. Om någon lyckas lista ut lösenordet eller om någon anställd skulle dela lösenordet någonstans så har den personen tillgång till alla användares konton ifall de inte själva bytt lösenord. Dock så måste personen veta vad användarna har för användarnamn. Om personen får tillgång till en FullControl användare kan de i princip ta bort all sparad data.
+
+2. I och med att alla datorer ligger på samma nätverk så räcker det med att nätverket går ner så tappar alla internetanslutning och allting behöver skötas offline. Då IDM servern är DNS server så fungerar inte massor av linux01 tjänsterna när den servern är offline.
+
+3. Om en AD server går ner eller i värsta fall går sönder så kan i värsta fall all information försvinna och man måste börja om från början. I bästa fall så ligger bara servern nere ett tag och vissa nätverkstjänster fungerar inte.
+
+Vad skulle du göra för att minska risken? 
+
+1. Tvinga varje ny användare att byta lösenord vid första inloggning och att varje ny användare får ett random lösenord skickat till sig när de skapar ett nytt konto, som de sedan får byta.
+
+2. Dela upp servrarna på olika fysiska nätverk.
+
+3. Ha minst två IDM servrar och AD servrar med replikering.
+
+Del 9.5.1
+
+Vad är stark autentisering och varför räcker det inte med bara användarnamn och lösenord i 
+en myndighet? 
+- Two-Factor authentication anses vara stark autentisering. Då får man exempelvis en kod skickad till sig till en betrott enhet (som en mobil), eller ett mail till din privata mailadress som du måste ange efter att du angett ditt användarnamn och lösenord.
+- En myndighet har hand om känsliga uppgifter och det är därför deras skyldighet att ha hög säkerhet.
+
+Vad tillför PhenixID som inte IdM och AD ger på egen hand? 
+- Det erbjuder Multi factor authentication, single sign on och även bankid inloggning.
+
+Vad är Single Sign-On och vad är fördelen med det för en medarbetare på Björklunda 
+kommun? 
+-  Man loggar in en gång och får tillgång till flera olika system, det är alltså färre inloggningsuppgifter att hålla koll på som dessutom kan läcka.
+
+
 # Del 10 — Råd och stöd -
 # Del 11 — Reflektera över din miljö 
