@@ -89,14 +89,14 @@ drv:///sample.drv/generic.ppd**
 Se ovan
 **Källor jag använde:**
 
-### 0000-00-00 
-**Arbetat med:** 
+### 2026-05-13 
+**Arbetat med: Del 8.2: Nätverkslägen i virtualisering** 
 
-**Vad jag gjorde:** 
+**Vad jag gjorde: Snapshots av alla VMs, återställde en snapshot, svarade på frågor.** 
 
-**Problem och lösningar:** 
+**Problem och lösningar: Inga problem** 
 
-**Beslut jag fattade:** 
+**Beslut jag fattade: Vad för fil jag skulle skapa och hur jag skulle visa att snapshot fungerade.** 
 
 **Källor jag använde:**
 
@@ -173,7 +173,9 @@ swap          2 GB           swap         Minimikrav
 # Del 3 — Linux-serverinstallation -
 
 Del 3.2
+
 Jag har installerat srv-linux01. Jag var tvungen att lägga till en /boot/efi på 600 mib för att det skulle fungera. Innan dess fick jag problem med min installation, det ståd att den inte kunde kontrollera utrymme, jag testade det mesta innan jag lyckades ta reda på vad felet var.
+
 Jag har gjort screenshots och lagt i screenshot mappen.
 ![Screenshot 02](Screenshot-01.png)
 ![Screenshot 02](Screenshot-02.png)
@@ -199,33 +201,35 @@ Del 3.4
 
 Del 3.4.3.
 Tre tjänster och varför de behövs:
-"sshd.service" gör att man kan fjärransluta till en server.
+- "sshd.service" gör att man kan fjärransluta till en server.
 
-"NetworkManager.service" hanterar nätverksanslutningar, utan den fungerar inte internet eller lan.
+- "NetworkManager.service" hanterar nätverksanslutningar, utan den fungerar inte internet eller lan.
 
-"firewalld.service" hanterar brandväggen och öppnar och stänger portar för inkommande ut och utgående trafik.
+- "firewalld.service" hanterar brandväggen och öppnar och stänger portar för inkommande ut och utgående trafik.
 
 Vilken port lyssnar SSH på och vad används den till?
 - Port 22 och används till att fjärransluta.
 
-Om man stänger av en kritiskt tjänst så kan systemet bli ostabilt eller osäkert, beroende på vilken tjänst man stänger av.
+- Om man stänger av en kritiskt tjänst så kan systemet bli ostabilt eller osäkert, beroende på vilken tjänst man stänger av.
 
-Man kan ta reda på om en tjänst är systemkritisk genom att skriva systemctl status <tjänst>
+- Man kan ta reda på om en tjänst är systemkritisk genom att skriva systemctl status <tjänst>
 
 Del 3.5.1
 
 ![screenshot 07](Screenshot-07.png)
  
  # Felsökning
- del 3.6.1
+Del 3.6.1
 ![screenshot 08](Screenshot-08.png)
 Min output visar att SSH är active (running) och enabled
-hade den inte vart igång hade stått stått active (dead) eller inactive (stopped)
+
+Hade den inte varit igång hade stått stått active (dead) eller inactive (stopped)
+
 För att starta igen hade jag skrivit sudo systemctl start sshd
 
 del 3.6.2
 ![screenshot 09](Screenshot-09.png)
-min output visar att mitt datornamn är satt korrekt, detta är vad servern identifierar sig som i nätverket.
+Min output visar att mitt datornamn är satt korrekt, detta är vad servern identifierar sig som i nätverket.
 Om det skulle stå ett annat namn än vad jag satt så hade det varit fel.
 För att byta hostname skriver man sudo hostnamectl set-hostname srv-linux01.bjorklunda.local
 
@@ -248,7 +252,7 @@ del 3.6.5
 ![screenshot 12](Screenshot-12.png)
 Eftersom jag inte har installerat idm01 och dc01 så kommer ping inte att fungera, vilket framgår i min screenshot. Jag kan dock pinga min värddator.
 
-Nätverksanslutningen hade varit bruten mm ping visar “Destination Host Unreachable”, 100% packet loss även om ip-adresserna är  i samma nät.
+Nätverksanslutningen hade varit bruten om ping visar “Destination Host Unreachable”, 100% packet loss även om ip-adresserna är  i samma nät.
 
 Jag hade kontrollerat brandväggar, att alla ip adresser är korrekta och att alla servrar är igång.
 
@@ -273,14 +277,15 @@ AD DC aktivt
 
 Del 4.3.2 frågor
 Vad är en skog(forest) i AD?
-En forest är den översta nivån i active directory där alla domäner ingår.
+- En forest är den översta nivån i active directory där alla domäner ingår.
 
 Vad är skillnaden mellan en domän och en OU?
-En domän är hela "byggnaden" där alla användare, datorer och regler finns.
-OU är där en mapp inne i domänen där man sorterar exempelvis användare och datorer
+- En domän är hela "byggnaden" där alla användare, datorer och regler finns.
+- OU är där en mapp inne i domänen där man sorterar exempelvis användare och datorer
 
 Vad används DSRM lösenordet till?
-Det används när man startar en domänkontrollant i reparationsläge. Det är enda sättet att komma åt AD om databasen går sönder.
+
+- Det används när man startar en domänkontrollant i reparationsläge. Det är enda sättet att komma åt AD om databasen går sönder.
 
 Del 4.4.1
 ![screenshot 17](Screenshot-17.png)
@@ -292,24 +297,35 @@ Jag har även skapat grupper direkt under mina tre OU, exempelvis IT-Technicians
 Del 4.6.1
 ![screenshot 19](Screenshot-19.png)
 
-del 4.7.1
+Del 4.7.1
 ![screenshot 20](Screenshot-20.png)
 Jag var tvungen att ta bort min VM för att serverdelarna fungerade inte med rhel 10.1
 Laddade ner rhel 9.7
 
 Del 4.7.2
 1. Vad är RHEL IdM och vad används det till?
-RHEL IdM är Red Hats system för central hantering av Linux‑användare, grupper och autentisering. Liknande Active Directory på Windows
 
-2. Skillnaden mellan RHEL IdM och Active Directory i din miljö
+RHEL IdM är Red Hats system för central hantering av Linux‑användare, grupper och autentisering. 
+Liknande Active Directory på Windows
+
+2. Skillnaden mellan RHEL IdM och Active 
+
+Directory i din miljö
+
 IdM hanterar Linux‑konton.
+
 AD hanterar Windows‑konton.
 
 3. Vilka tjänster startar IdM automatiskt och vad gör de?
+
 LDAP – lagrar användare och grupper
+
 Kerberos – sköter inloggning/SSO
+
 Dogtag CA – hanterar certifikat
+
 DNS – domänens DNS
+
 HTTPD – webgränssnittet för IdM
 
 Del 4.8.1
@@ -343,15 +359,18 @@ $users = Import-Csv -Path "C:\lab\data\users.csv" -Encoding UTF8
 foreach ($user in $users) {
 
 - Om en användare redan finns med samma namn så skapar den inte en dublett, skriver istället ut att användaren redan finns.
+
     if (Get-ADUser -Filter "SamAccountName -eq '$($user.Username)'" -ErrorAction SilentlyContinue) {
         Write-Host "SKIPPED: $($user.Username) already exists" -ForegroundColor Yellow
         continue
     }
 
 - Placerar varje användare i rätt OU baserat på deras avdelning.
+
     $ouPath = "OU=$($user.Department),OU=IT-Department,DC=bjorklunda,DC=local"
 
 - Skapar ett nytt AD‑konto med rätt namn, användarnamn, lösenord och placering i OU‑strukturen, baserat på informationen i CSV‑filen.
+
     New-ADUser `
         -Name "$($user.FirstName) $($user.LastName)" `
         -GivenName $user.FirstName `
@@ -363,15 +382,18 @@ foreach ($user in $users) {
         -AccountPassword (ConvertTo-SecureString "Welcome2024!" -AsPlainText -Force)
 
 - Lägger till användaren i rätt säkerhetsgrupp
+
     Add-ADGroupMember -Identity $user.ADGroup -Members $user.Username
 
 - Skriver ut att användaren har skapats
+
     Write-Host "CREATED: $($user.Username)" -ForegroundColor Green
 }
 
 Del 5.2.2
 ![screenshot 24](Screenshot-24.png)
 För att det här skulle fungera så var jag tvungen att ändra till rätt gruppnamn i users.csv
+
 Vi ombads tidigare att döpa grupperna till samma namn som deras OU, men i users.csv så står det GRP_(gruppnamn), detta gör att scriptet försöker lägga till användarna i grupper som inte finns.
 
 Del 5.2.3
@@ -435,22 +457,28 @@ Vad händer om scriptet körs två gånger och varför är det viktigt att hante
 
 Del 6.1.1
 ![screenshot 28](Screenshot-28.png)
+
 Mapparna är skapade med rätt rättigheter. Fungerade inte först för att min srv-idm01 inte var igång.
 
 Del 6.1.2
+
 Första siffran av CHMOD kommandot är ägarens rättigheter, andra siffran är gruppens rättigheter, sista siffran är alla andras rättigheter.
 
 750 = Ägaren har läs skriv och kör, gruppen har läs och kör, alla andra har ingen åtkomst
+
 770 = Ägaren och gruppen har läs skriv och kör, alla andra har ingen åtkomst.
 
 Del 6.2.1
+
 Jag tog bort:
-Users
-Authenticated Users
-Domain Users
-Everyone
-CREATOR OWNER
-Administrators
+
+- Users
+- Authenticated Users
+- Domain Users
+- Everyone
+- CREATOR OWNER
+- Administrators
+
 Jag tog bort dessa eftersom uppgiften kräver att endast grupperna ReadOnly och FullControl ska ha åtkomst till mapparna, annars skulle annars fler användare åtkomst än vad som är tillåtet.
 
 Del 6.2.2
@@ -468,6 +496,7 @@ Del 6.4.2
 Nekad åtkomst från användare med readonly
 
 Del 6.4.3
+
 Vad är skillnaden mellan NTFS-rättigheter och delningsrättigheter (share permissions)? 
 - NTFS styr vad du får göra med själva filerna, oavsett hur du är ansluten.
 - Delningsrättigheter styr vad du får göra om du är ansluten via nätverket.
@@ -516,6 +545,73 @@ Hur skulle du styra vem som får skriva ut med hjälp av IdM-grupper i en produk
 - Man kan skapa IDM grupper med utskrifsbehörigheter och sedan konfigurera cups så att bara användare som är med i dessa grupper får skriva ut
 
 # Del 8 — Virtualisering -
+
+Del 8.1.1: Svara på frågorna 
+
+Vilken virtualiseringsplattform använder du och varför? 
+- Jag använder VMware Workstation Pro. Jag använder den för att jag tycker att den är stabil, enkel att använda och det är den jag har lärt mig.
+
+Vad är skillnaden mellan en typ 1-hypervisor och en typ 2-hypervisor? 
+- En typ 1 körs direkt på hårdvaran och används ofta i datacenter.
+- En typ 2 körs ovanpå operativsystemet (som jag gör), används ofta för mindre projekt och labbmiljö.
+
+Vilket typ är din plattform och vad innebär det för prestanda jämfört med den andra typen? 
+- Min är en typ 2 eftersom jag har installerat det i Windows. Prestandan beror på vad du har för hårdvara och var för hårdvaru du deligerar till din VM. Men normalt sätt så är det bättre att köra det direkt på hårdvaran då du inte har annat som jobbar i bakgrunden.
+
+Del 8.2.1
+
+Jag har inte använt en källa utan utgår ifrån vad jag lärt mig i andra kurser och vad det står i VMware.
+
+Nätverksläge NAT   
+
+Vad det innebär                                  
+- Delar värddatorns IP adress på nätverket, men har en egen intern ip adress.
+
+När det används
+- När man vill ha internet men inte behöver vara åtkomplig från andra enheter som en egen enhet.
+
+Nätverksläge Bridged (Som jag har valt)  
+
+När det används
+- När man vill att enheten ska agera som en unik enhet på nätverket med sin egna IP adress. Bra för servrar exempelvis, om man sätter en statisk ip adress.
+
+Vad det innebär    
+- Fungerar som att du kopplar en ny dator till ditt nätverk, får alltså en IP adress enligt din routers DHCP inställningar alternativt att du sätter en statisk ip adress inom din nätverksadress.
+
+Host-only   
+
+När det används
+- När man vill testa saker inom ett isolerat nätverk.
+
+Vad det innebär 
+- Du får ingen internetuppkoppling men du kan prata med andra datorer och värddatorn så länge de också har host only. Som ett LAN nätverk.
+
+Del 8.3.1
+
+![screenshot 37](Screenshot-37.png)
+linux01 snapshot
+
+Del 8.3.2
+![screenshot 38](Screenshot-38.png)
+idm01 snapshot
+
+Del 8.3.3
+![screenshot 39](Screenshot-39.png)
+dc01 snapshot
+
+Del 8.4.1
+![screenshot 40.1](Screenshot-40.1.png)
+![screenshot 40](Screenshot-40.png)
+
+Del 8.4.2 
+
+Jag gjorde en testfil (testfest.txt), jag återställde sedan min snapshot genom att högerklicka på min vm > snapshot > Revert to Snapshot och filen var då borta.
+Filen försvann eftersom den inte fanns när jag gjorde min snapshot.
+
+Snapshots är ett bra verktyg om man vill testa nya konfigurationer och sedan vill kunna gå tillbaka till hur VMen såg ut innan man gjorde förändringarna.
+
+Det är inte ett bra verktyg för långsiktig backup eftersom de försvinner om man skulle behöva ta bort sin VM (som jag gjorde då jag behövde installera RHEL 9.7 istället för 10.1, data bör man backa upp någon annanstans och helst inte lokalt.)
+
 # Del 9 — Lagar och säkerhet -
 # Del 10 — Råd och stöd -
 # Del 11 — Reflektera över din miljö 
