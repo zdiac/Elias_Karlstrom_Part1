@@ -107,16 +107,16 @@ https://www.cups.org/doc/cupsd.conf.html
 https://www.redhat.com/en/about/eulas
 https://linuxbash.sh/post/open-source-vs-proprietary-software**
 
-### 0000-00-00 
-**Arbetat med:** 
+### 2026-05-15 
+**Arbetat med:** Del 10: Råd och stöd 
 
-**Vad jag gjorde:** 
+**Vad jag gjorde:** Skrev ett välkomstbrev och svarade på ett mail från en anställd
 
-**Problem och lösningar:** 
+**Problem och lösningar:** Inga problem 
 
-**Beslut jag fattade:** 
+**Beslut jag fattade:** Hur den anställdas problem kunde ha uppstått och en lösning på problemet
 
-**Källor jag använde:**
+**Källor jag använde:** Behövde inga källor här.
 
 ### 0000-00-00 
 **Arbetat med:** 
@@ -716,4 +716,33 @@ kommun?
 
 
 # Del 10 — Råd och stöd -
+
+10.1.1 - Välkomstbrev
+
+Välkommen till IT-Avdelningen på Björklunda kommun! 
+
+Ditt användarnamn är: fefternamn
+Ditt lösenord är: Welcome2024!
+
+När du har loggat in och öppnat Utforskaren (Ikonen som ser ut som en perm). Här kommer det att finnas en mapp som heter Shares, där ligger en mapp som heter IT-common och en mapp som heter IT-admin. Dina arbetsuppgifter ger dig tillgång till allting under IT-common, där saker som delas av andra medarbetare kommer att ligga.
+
+För att skriva ut så trycker du på Ctrl + P och väljer sedan skrivaren som finns under "Nätverk" och heter "IT-Printer".
+
+Att dela med sig av sina inloggningsuppgifter eller att använda en annan person konto med mer rättigheter än dina egna är inte tillåtet och kommer att följas upp.
+
+Vid problem med inloggning eller tekniska frågor så når du intern support på nummer 020-111 222 eller via mail på intern.support@bjorklunda.se
+
+Del 10.1.2: Svara på en supportfråga
+
+Hej Anki!
+
+Jag förstår att du har problem att komma in i mappen IT-Admin som du alltid tigare har haft tillgång till.
+
+Vi ser i vårat system att du inte har upptaterat ditt lösenord på över tre år.
+
+För att återfå dina administratörsrättigheter, vänliga uppdatera ditt lösenord via mailet "Dags att byta lösenord!" som skickades till dig förra veckan. Så fort du har gjort detta så kommer dina tidigare rättigheter att återinföras.
+
+//Björklunda IT-avdelning.
+
+
 # Del 11 — Reflektera över din miljö 
