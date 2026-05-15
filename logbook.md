@@ -118,14 +118,14 @@ https://linuxbash.sh/post/open-source-vs-proprietary-software**
 
 **Källor jag använde:** Behövde inga källor här.
 
-### 0000-00-00 
-**Arbetat med:** 
+### 2026-05-15 
+**Arbetat med:** Del 11: Reflektera över din miljö 
 
-**Vad jag gjorde:** 
+**Vad jag gjorde:** Svarade på frågor angående min miljö, ritade ett diagram.
 
-**Problem och lösningar:** 
+**Problem och lösningar:** Fick tänka till angeående hur allting samverkar.
 
-**Beslut jag fattade:** 
+**Beslut jag fattade:** Hur mitt diagrams skulle se ut så att man förstår hur allting hänger ihop.
 
 **Källor jag använde:**
 
@@ -746,3 +746,37 @@ För att återfå dina administratörsrättigheter, vänliga uppdatera ditt lös
 
 
 # Del 11 — Reflektera över din miljö 
+
+Del 11.1: Rita din miljöplan
+![färdig miljöplan](environment_plan_final-1.png)
+
+Del 11.1.1
+
+Vad gör srv-linux01, srv-idm01 och srv-dc01? Varför behövs alla tre? 
+- linx01 har delade mappar och säkerhetsgrupper för linux-användare och autentiserar mot IdM. Den delar även ut skrivare med cups.
+- idm01 kör RHEL IDM och används av linux01 för autentisering. Den är även DNS för linux-miljön. Detta är den centrala databasen.
+- dc01 har Active Directory installerat och är den centrala databasen för windows miljön. Här finns alla windows användare, delade mappar och säkerhetsgrupper.
+
+Vad är skillnaden mellan RHEL IdM och Active Directory i din miljö? 
+- IdM hanterar Linux‑användare, SSH‑nycklar, sudo‑regler och Linux‑grupper.
+- AD hanterar Windows‑användare, datorer och GPO.
+
+Vad skulle hända om srv-idm01 slutade fungera? Vad påverkas och vad påverkas inte? 
+- Linux användare som inte är lokala användare på linux01 kan inte logga in på linux01, men är de redan inloggade så kan de fortsätta vara inloggade och använda den delade skrivaren.
+- DNS slutar fungerar vilket ger problem med internet (detta har jag själv märkt.)
+- Lokala användare påverkas inte, cups påverkas inte.
+
+Vad skulle hända om srv-dc01 slutade fungera? Vad påverkas och vad påverkas inte? 
+-  Delade mappar som ligger på dc01 går inte att nå. 
+- Helt nya användare kan inte logga in för första gången
+- Har du redan loggat in för första gången så kan du logga in igen.
+- Ingenting kommer att synkas förrän servern går igång igen.
+
+Vad är PhenixID:s roll i en produktionsmiljö? Varför räcker det inte med bara IdM och AD? 
+- PhenixID har extra säkerhet som multi factor authentication och single sign on som inte AD eller IDM erbjuder.
+
+Vad skulle du göra annorlunda om du byggde miljön igen från början? 
+- Jag hade haft två stycken av varje Domain controller så att en kan gå ner utan att det påverkar hela systemet. Jag hade haft servarna på två olika fysiska routrar.
+- Jag hade tvingat nya användare att byta lösenord vid första inloggning.
+- Jag hade bara använt en Windows miljö för vanliga användare och endast haft Linux för specifika tjänster och servrar, som exempelvis nätverkshantering.
+- Jag hade haft en klientdator i min miljö så man tydligare kan se skillnaden på att vara inloggad som en klient gentemot direkt på AD servern.

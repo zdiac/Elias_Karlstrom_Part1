@@ -1,0 +1,85 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Sida-1" id="_qgiPtRC1gfbTLUNwfR5">
+    <mxGraphModel dx="1032" dy="628" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="light-dark(#FFFFFF,#838383)" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="-r10dXVxHH8wh-Za-6Uv-1" parent="1" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/windows_server_2.svg;" value="" vertex="1">
+          <mxGeometry height="110" width="88" x="610" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="-r10dXVxHH8wh-Za-6Uv-2" parent="1" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/generic_server.svg;" value="" vertex="1">
+          <mxGeometry height="100" width="56" x="110" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-r10dXVxHH8wh-Za-6Uv-3" parent="1" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/database_server.svg;" value="" vertex="1">
+          <mxGeometry height="95" width="77.9" x="350" y="27.5" as="geometry" />
+        </mxCell>
+        <mxCell id="-r10dXVxHH8wh-Za-6Uv-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;192.168.0.70&lt;/div&gt;&lt;div&gt;Windows Server 2025&lt;/div&gt;&lt;div&gt;Active Directory Domain Controller&lt;/div&gt;&lt;div&gt;Organisational unites&lt;/div&gt;&lt;div&gt;Group policy objects&lt;/div&gt;&lt;div&gt;Hanterar och skapar nya användare&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Nya windows användare hade identifierat sig mot den här servern, de hade loggat in på datorer som tillhör samma domän&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="240" x="520" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="-r10dXVxHH8wh-Za-6Uv-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;192.168.0.80&lt;/div&gt;&lt;div&gt;RHEL 9.7&lt;/div&gt;&lt;div&gt;IdM domain controller&lt;/div&gt;&lt;div&gt;DNS server för Linux miljön&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="143.95" x="316.98" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="-r10dXVxHH8wh-Za-6Uv-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;192.168.0.60&lt;/div&gt;&lt;div&gt;RHEL 9.7&lt;/div&gt;&lt;div&gt;Hanterar linux tjänster, delar ut skrivare, skapar nya användare och delar ut mappar. identifierar sig mot IdM domain controller.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="140" x="68" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="-r10dXVxHH8wh-Za-6Uv-8" edge="1" parent="1" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="216.98" y="100" as="sourcePoint" />
+            <mxPoint x="316.98" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-r10dXVxHH8wh-Za-6Uv-9" parent="1" style="image;html=1;image=img/lib/clip_art/networking/Wireless_Router_N_128x128.png" value="" vertex="1">
+          <mxGeometry height="80" width="80" x="334" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="-r10dXVxHH8wh-Za-6Uv-12" edge="1" parent="1" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="180" y="120" as="sourcePoint" />
+            <mxPoint x="330" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-r10dXVxHH8wh-Za-6Uv-13" edge="1" parent="1" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="160" />
+            </Array>
+            <mxPoint x="440" y="120" as="sourcePoint" />
+            <mxPoint x="390" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-r10dXVxHH8wh-Za-6Uv-14" edge="1" parent="1" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="470" y="240" />
+            </Array>
+            <mxPoint x="580" y="90" as="sourcePoint" />
+            <mxPoint x="430" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-r10dXVxHH8wh-Za-6Uv-15" parent="1" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/internet_globe.svg;" value="" vertex="1">
+          <mxGeometry height="50" width="50" x="350" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="-r10dXVxHH8wh-Za-6Uv-16" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;192.168.0.0 (nätverksadress)&lt;/div&gt;&lt;div&gt;192.168.0.1&lt;/div&gt;&lt;div&gt;(Default gateway)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="340" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="-r10dXVxHH8wh-Za-6Uv-21" edge="1" parent="1" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="373.5" y="500" as="sourcePoint" />
+            <mxPoint x="373.5" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-r10dXVxHH8wh-Za-6Uv-22" edge="1" parent="1" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="316.98" y="60.5" as="sourcePoint" />
+            <mxPoint x="216.98" y="60" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-r10dXVxHH8wh-Za-6Uv-25" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="410" width="790" x="10" as="geometry" />
+        </mxCell>
+        <mxCell id="-r10dXVxHH8wh-Za-6Uv-26" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Internet" vertex="1">
+          <mxGeometry height="30" width="60" x="345" y="620" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
